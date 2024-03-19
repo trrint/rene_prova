@@ -1,0 +1,37 @@
+import psycopg2
+
+
+def connect_bd_local():
+    con = psycopg2.connect(
+        host='localhost',
+        database='compila',
+        user='postgres',
+        password='admin'
+    )
+
+    return con
+
+
+def connect_cloud():
+    con = psycopg2.connect(
+        host='dpg-cnqu14uct0pc73cpbt20-a.oregon-postgres.render.com',
+        database='compilacloud',
+        user='compilacloud_user',
+        password='1qw4gv3Mmh1eIQc5JK4LXgqgamx4zw8Q'
+    )
+
+    return con
+
+
+def connect_bd():
+    return connect_cloud()
+
+
+def verificar_login(login, senha):
+    con = connect_bd()
+    cursor = con.cursor()
+    cursor.execute(f"select count(*) from usuarios where email = '{login}' and senha = '{senha}'")
+    if cursor.fetchall()[0][0] == 1:
+        return True
+    else:
+        return False

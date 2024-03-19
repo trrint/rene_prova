@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Contatos</title>
+    <link rel="stylesheet" href="../static/lista.css">
+</head>
+<body>
+    <a href="/">Logout</a>
+    <h1>Lista de Contatos</h1>
+    <form method="post">
+        <label for="ceps">Filtrar por CEP:</label><br>
+        <input type="text" id="ceps" name="ceps"><br>
+        <br>
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Comentário</th>
+            <th>CEP</th>
+        </tr>
+        {% for contato in contatos %}
+        <tr>
+            <td>{{ contato[0] }}</td>
+            <td>{{ contato[1] }}</td>
+            <td>{{ contato[2] }}</td>
+            <td>{{ contato[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
